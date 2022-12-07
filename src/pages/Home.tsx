@@ -24,6 +24,7 @@ export function Home(){
             setTotal(res.data.COOKRCP01.total_count);
             setData(res.data.COOKRCP01.row);
             setLoad(true);
+            console.log(data)
         }).catch((error)=>{
             console.log(error)
         })
