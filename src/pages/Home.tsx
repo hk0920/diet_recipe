@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { List } from "../components/List";
 import { Loading } from "../components/Loading";
 
 interface dataType {
@@ -35,7 +36,9 @@ export function Home(){
             {load == false?
                 <Loading />
             :
-                <p className="text__total">총 : {total}</p>
+                <>
+                    <List data={data} total={total}/>
+                </>
             }
             
 

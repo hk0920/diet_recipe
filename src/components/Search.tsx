@@ -5,12 +5,14 @@ interface propsType {
 }
 export function Search({id} : propsType){
     const SearchBox = styled.div`
+        height:0;
         padding:20px 0;
         opacity:0;
         overflow:hidden;
         transition:all 0.3s ease;
 
         &.on{
+            height:auto;
             opacity:1;
             overflow:visible;
         }
