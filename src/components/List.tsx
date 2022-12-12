@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components"
 import { Extension } from "typescript";
 
@@ -64,9 +65,6 @@ export interface arrDataProps {
 }
 
 export function List(props:arrDataProps){
-    console.log(props.data)
-    console.log(props.total)
-
     const TextTotal = styled.p`
         margin-bottom:20px;
         font-size:16px;
@@ -81,11 +79,13 @@ export function List(props:arrDataProps){
         border-top:2px solid #000;    
         
         .list-item {
-            display:flex;
-            padding:20px 0;
-            border-bottom:1px solid #e5e5e5;
-            flex-wrap:wrap;
-            align-items:center;
+            a{
+                display:flex;
+                padding:20px 0;
+                border-bottom:1px solid #e5e5e5;
+                flex-wrap:wrap;
+                align-items:center;
+            }
 
             .box__image{
                 width:150px;
@@ -147,30 +147,32 @@ export function List(props:arrDataProps){
         <>
             <TextTotal>총 <span className="text__number">{props.total}</span>개</TextTotal>
             <BoxList>
-                {props.data.map((item)=>{
+                {props.data.map((item, idx)=>{
                     return(
-                        <li className="list-item">
-                            <div className="box__image">
-                                <img src={item.ATT_FILE_NO_MK} alt="" />
-                            </div>
-                            <div className="box__text">
-                                <p className="text__category">
-                                    <span>{item.RCP_PAT2}</span>
-                                    <span>{item.RCP_WAY2}</span>
-                                    {item.HASH_TAG != "" ?
-                                        <span>{item.HASH_TAG}</span>
-                                    :""
-                                    }
-                                </p>
-                                <p className="text__name">{item.RCP_NM} <span className="text__kal">({item.INFO_ENG}kal)</span></p>
-                                <ul className="list__food-detail">
-                                    {item.RCP_PARTS_DTLS.split(",").map((option)=>{
-                                        return(
-                                            <li>{option}</li>
-                                        )
-                                    })}
-                                </ul>                        
-                            </div>
+                        <li className="list-item" key={idx}>
+                            <Link to={`detail/${idx+1}`}>
+                                <div className="box__image">
+                                    <img src={item.ATT_FILE_NO_MK} alt="" />
+                                </div>
+                                <div className="box__text">
+                                    <p className="text__category">
+                                        <span>{item.RCP_PAT2}</span>
+                                        <span>{item.RCP_WAY2}</span>
+                                        {item.HASH_TAG != "" ?
+                                            <span>{item.HASH_TAG}</span>
+                                        :""
+                                        }
+                                    </p>
+                                    <p className="text__name">{item.RCP_NM} <span className="text__kal">({item.INFO_ENG}kal)</span></p>
+                                    <ul className="list__food-detail">
+                                        {item.RCP_PARTS_DTLS.split(",").map((option, i)=>{
+                                            return(
+                                                <li key={i}>{option}</li>
+                                            )
+                                        })}
+                                    </ul>
+                                </div>
+                            </Link>
                         </li>
                     )
                 })}

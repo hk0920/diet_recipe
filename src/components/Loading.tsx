@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export function Loading(){
     let [randomN, setRandomN] = useState(Math.floor((Math.random()*(5-1)+1)));
-    const loadingImg = "./assets/loading/loading-icon" + randomN + ".gif";
+    const loadingImg = "/assets/loading/loading-icon" + randomN + ".gif";
     
     const BoxLoading = styled.div`
         font-size:20px;

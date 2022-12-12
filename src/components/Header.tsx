@@ -12,6 +12,7 @@ export function Header(){
         .header-inner{
             display:flex;
             width:100%;
+            justify-content:space-between;
 
             .button__search{
                 display:block;
@@ -37,27 +38,6 @@ export function Header(){
             vertical-align:middle;
         }
     `;
-    
-    const AddressBox = styled.p`
-        flex:1;
-        height:48px;
-        padding:5px 10px;
-        margin:0 10px;
-        font-weight:bold;
-        line-height:35px;
-        border:1px solid #e5e5e5;
-        border-radius:5px;
-
-        &:before{
-            content:"";
-            display:inline-block;
-            width:20px;
-            height:20px;
-            margin-top:7px;
-            background:url(${location}) no-repeat center / auto 100%;
-            vertical-align:top;
-        }
-    `;
 
     const activeSearch = (event: React.FormEvent<HTMLButtonElement>)=>{
         const $target = event.currentTarget;
@@ -78,11 +58,8 @@ export function Header(){
         <Header id="header" className="inner">
             <div className="header-inner">
                 <Logo>
-                    <Link to="/">Load-Food</Link>
+                    <Link to="/">Diet-Recipe</Link>
                 </Logo>
-                <AddressBox>
-                    <strong className="for-a11y">현위치</strong> 주소
-                </AddressBox>
                 <button type="button" className="button__search" onClick={activeSearch}>
                     <span className="for-a11y">검색창 열기</span>
                 </button>

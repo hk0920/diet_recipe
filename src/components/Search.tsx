@@ -47,35 +47,12 @@ export function Search({id} : propsType){
         }
     `;
 
-    const CategoryBox = styled.ul`
-        display:flex;
-
-        .list-item{
-            display:inline-block;
-            padding:10px 15px;
-            font-size:16px;
-            border:1px solid #e5e5e5;
-            border-radius:20px;
-
-            &:not(:first-child){
-                margin-left:10px;
-            }
-        }
-    `;
     return (
         <SearchBox id={id}>
             <FormBox action="post">
-                <input type="text" placeholder="주소 또는 사업장 입력" />
+                <input type="text" placeholder="요리명 또는 음식 재료 입력" />
                 <button type="button">검색</button>
             </FormBox>
-            <CategoryBox>
-                <li className="list-item">카테고리1</li>
-                <li className="list-item">카테고리2</li>
-                <li className="list-item">카테고리3</li>
-                <li className="list-item">카테고리4</li>
-                <li className="list-item">카테고리5</li>
-                <li className="list-item">카테고리6</li>
-            </CategoryBox>
         </SearchBox>
     )
 }
