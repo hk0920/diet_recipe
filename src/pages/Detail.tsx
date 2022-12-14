@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import styled from "styled-components";
+import { Empty } from "../components/Empty";
 import { Loading } from "../components/Loading";
 
 export interface dataType { 
@@ -62,16 +63,33 @@ export interface dataType {
 }
 
 export function Detail(){
+	const {idx} = useParams();
 	let [load, setLoad] = useState(false);
 	let [data, setData] = useState<dataType>();
-	const {idx} = useParams();
+	let [manual, setManual] = useState([]);	
+	
 
 	useEffect(()=>{
 		var key = "eee79f6774ce45108ed4";
 		axios.get("http://openapi.foodsafetykorea.go.kr/api/"+ key +"/COOKRCP01/json/"+idx+"/"+ idx).then((res)=>{
 			setData(res.data.COOKRCP01.row[0]);
 			setLoad(true);
-			console.log(data)
+			let strArr = Object.entries(res.data.COOKRCP01.row[0]);
+			for(let item in strArr){
+				let dataText = strArr[item][0].substring(0,strArr[item][0].length -2);
+				// console.log(dataText)
+				let dataObj = {
+					text : "",
+					img : "1"
+				}
+				// console.log(strArr[item][1])
+				if(dataText === "MANUAL_IMG"){
+					console.log(strArr[item][1])
+					let img = strArr[item][1];
+					// dataObj.img = strArr[item][1];
+				}
+				// manual.push(res.data.COOKRCP01.row[0].MANUAL+ i)
+			}
 		}).catch((error)=>{
 			console.log(error)
 		})
@@ -240,17 +258,30 @@ export function Detail(){
 							})}
 						</ul>
 					</BoxSection>
-					<BoxSection>
-						<h3 className="text__h3">조리 순서</h3>
-						<ul className="list__recipe">
-							<li className="list-item">
-								<div className="box__image"><img src={data?.MANUAL_IMG01} alt="" /></div>
-								<div className="box__text">
-									<p className="text">{data?.MANUAL01}</p>
-								</div>
-							</li>
-						</ul>
-					</BoxSection>
+					{data?.MANUAL01 !== ""?
+						<BoxSection>
+							<h3 className="text__h3">조리 순서</h3>
+							<ul className="list__recipe">
+								<li className="list-item">
+									<div className="box__image"><img src={data?.MANUAL_IMG01} alt="" /></div>
+									<div className="box__text">
+										<p className="text">{data?.MANUAL01}</p>
+									</div>
+								</li>
+								{data?.MANUAL02 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG02} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL02}</p>
+										</div>
+									</li>
+								:""}
+							</ul>
+						</BoxSection>
+					:	
+						<Empty text="등록된 조리순서가 없습니다."/>
+					}
+					
 				</BoxDetail>
 			}
 		</>
