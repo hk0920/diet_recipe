@@ -74,24 +74,25 @@ export function Detail(){
 		axios.get("http://openapi.foodsafetykorea.go.kr/api/"+ key +"/COOKRCP01/json/"+idx+"/"+ idx).then((res)=>{
 			setData(res.data.COOKRCP01.row[0]);
 			setLoad(true);
-			let dataKey = Object.keys(res.data.COOKRCP01.row[0]);
-			let dataObj = {
-				text: "",
-				img : ""
-			}
-			console.log(dataKey)
-			for(let item in dataKey){
-				const recipeTarget = dataKey[item].match("MANUAL");
-				const recipeStr = recipeTarget?.input?.toString();
-				const recipeKey = recipeStr?.substring(0, recipeStr.length-2);
-				const idx = recipeStr?.substring(recipeStr.length-2, recipeStr.length);
+			
+			// let dataKey = Object.keys(res.data.COOKRCP01.row[0]);
+			// let dataObj = {
+			// 	text: "",
+			// 	img : ""
+			// }
+			// console.log(dataKey)
+			// for(let item in dataKey){
+			// 	const recipeTarget = dataKey[item].match("MANUAL");
+			// 	const recipeStr = recipeTarget?.input?.toString();
+			// 	const recipeKey = recipeStr?.substring(0, recipeStr.length-2);
+			// 	const idx = recipeStr?.substring(recipeStr.length-2, recipeStr.length);
 
-				if(recipeKey === "MANUAL"){
-					// dataObj.text = Object.values(recipeKey);
-				}
-				console.log(recipeKey , idx)
-				// console.log(recipeStr?.substring(recipeStr.length-2, recipeStr.length))
-			}
+			// 	if(recipeKey === "MANUAL"){
+			// 		// dataObj.text = Object.values(recipeKey);
+			// 	}
+			// 	console.log(recipeKey , idx)
+			// 	// console.log(recipeStr?.substring(recipeStr.length-2, recipeStr.length))
+			// }
 		}).catch((error)=>{
 			console.log(error)
 		})
@@ -207,6 +208,11 @@ export function Detail(){
 				display:flex;
 				flex-wrap:nowrap;
 				align-items:center;
+				margin-top:15px;
+				
+				&:first-child{
+					margin-top:0;
+				}
 			}
 
 			.box__image{
@@ -264,17 +270,163 @@ export function Detail(){
 						<BoxSection>
 							<h3 className="text__h3">조리 순서</h3>
 							<ul className="list__recipe">
-								<li className="list-item">
-									<div className="box__image"><img src={data?.MANUAL_IMG01} alt="" /></div>
-									<div className="box__text">
-										<p className="text">{data?.MANUAL01}</p>
-									</div>
-								</li>
+								{data?.MANUAL01 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG01} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL01}</p>
+										</div>
+									</li>
+								:""}
 								{data?.MANUAL02 !== ""?
 									<li className="list-item">
 										<div className="box__image"><img src={data?.MANUAL_IMG02} alt="" /></div>
 										<div className="box__text">
 											<p className="text">{data?.MANUAL02}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL03 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG03} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL03}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL04 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG04} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL04}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL05 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG05} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL05}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL06 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG06} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL06}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL07 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG07} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL07}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL08 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG08} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL08}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL09 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG09} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL09}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL10 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG10} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL10}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL11 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG11} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL11}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL12 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG12} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL12}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL13 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG13} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL13}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL14 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG14} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL14}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL15 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG15} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL15}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL16 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG16} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL16}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL17 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG17} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL17}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL18 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG18} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL18}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL19 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG19} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL19}</p>
+										</div>
+									</li>
+								:""}
+								{data?.MANUAL20 !== ""?
+									<li className="list-item">
+										<div className="box__image"><img src={data?.MANUAL_IMG20} alt="" /></div>
+										<div className="box__text">
+											<p className="text">{data?.MANUAL20}</p>
 										</div>
 									</li>
 								:""}
