@@ -1,9 +1,13 @@
+import React, { HtmlHTMLAttributes, useEffect, useState } from "react";
+import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
 import styled from "styled-components";
 
 interface propsType {
     id : string
 }
 export function Search({id} : propsType){
+    const [srchWord, setSrchWord] = useState(""); 
+
     const SearchBox = styled.div`
         height:0;
         padding:20px 0;
@@ -47,11 +51,20 @@ export function Search({id} : propsType){
         }
     `;
 
+    useEffect(()=>{
+        console.log("??")
+    })
+
+    const submitForm =(event:React.FormEvent<HTMLFormElement>) =>{
+        event.preventDefault();
+        console.log(event.target)
+    }
+
     return (
         <SearchBox id={id}>
-            <FormBox action="post">
-                <input type="text" placeholder="요리명 또는 음식 재료 입력" />
-                <button type="button">검색</button>
+            <FormBox action="/" onSubmit={submitForm}>
+                <input type="text" placeholder="요리명 또는 음식 재료 입력"/>
+                <button type="submit">검색</button>
             </FormBox>
         </SearchBox>
     )

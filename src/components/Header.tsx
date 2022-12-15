@@ -40,6 +40,7 @@ export function Header(){
     `;
 
     const activeSearch = (event: React.FormEvent<HTMLButtonElement>)=>{
+        event.preventDefault();
         const $target = event.currentTarget;
         const $searchTarget = document.getElementById("headerSrch");
 

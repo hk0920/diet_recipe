@@ -74,21 +74,23 @@ export function Detail(){
 		axios.get("http://openapi.foodsafetykorea.go.kr/api/"+ key +"/COOKRCP01/json/"+idx+"/"+ idx).then((res)=>{
 			setData(res.data.COOKRCP01.row[0]);
 			setLoad(true);
-			let strArr = Object.entries(res.data.COOKRCP01.row[0]);
-			for(let item in strArr){
-				let dataText = strArr[item][0].substring(0,strArr[item][0].length -2);
-				// console.log(dataText)
-				let dataObj = {
-					text : "",
-					img : "1"
+			let dataKey = Object.keys(res.data.COOKRCP01.row[0]);
+			let dataObj = {
+				text: "",
+				img : ""
+			}
+			console.log(dataKey)
+			for(let item in dataKey){
+				const recipeTarget = dataKey[item].match("MANUAL");
+				const recipeStr = recipeTarget?.input?.toString();
+				const recipeKey = recipeStr?.substring(0, recipeStr.length-2);
+				const idx = recipeStr?.substring(recipeStr.length-2, recipeStr.length);
+
+				if(recipeKey === "MANUAL"){
+					// dataObj.text = Object.values(recipeKey);
 				}
-				// console.log(strArr[item][1])
-				if(dataText === "MANUAL_IMG"){
-					console.log(strArr[item][1])
-					let img = strArr[item][1];
-					// dataObj.img = strArr[item][1];
-				}
-				// manual.push(res.data.COOKRCP01.row[0].MANUAL+ i)
+				console.log(recipeKey , idx)
+				// console.log(recipeStr?.substring(recipeStr.length-2, recipeStr.length))
 			}
 		}).catch((error)=>{
 			console.log(error)
