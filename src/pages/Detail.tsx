@@ -259,7 +259,7 @@ export function Detail(){
 								return(
 									<>
 										{item !== ""?
-											<li>{item.trim()}</li>
+											<li key={idx}>{item.trim()}</li>
 										:""}
 									</>
 								)
