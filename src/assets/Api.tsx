@@ -2,7 +2,7 @@ import axios from "axios"
 
 interface ApiProps {
   method: string;
-  url:string|undefined;
+  url:string;
   params:object;
   contentType:string|null;
 }
