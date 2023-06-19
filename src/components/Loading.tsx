@@ -1,26 +1,9 @@
 import { useState } from "react";
-import styled from "styled-components";
+import { BoxLoading } from "../styles/GlobalStyle";
 
 export function Loading(){
     let [randomN, setRandomN] = useState(Math.floor((Math.random()*(5-1)+1)));
     const loadingImg = "/assets/loading/loading-icon" + randomN + ".gif";
-    
-    const BoxLoading = styled.div`
-        font-size:20px;
-        color:#999;
-        text-align:center;
-
-        .box__text{
-            margin-top:40px;
-
-            .text__title{
-                margin-bottom:15px;
-                font-size:35px;
-                font-weight:bold;
-                color:#333;
-            }
-        }
-    `;  
 
     return(
         <BoxLoading>

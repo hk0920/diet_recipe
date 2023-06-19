@@ -1,59 +1,16 @@
-import React, { HtmlHTMLAttributes, useEffect, useState } from "react";
-import { findRenderedDOMComponentWithClass } from "react-dom/test-utils";
-import styled from "styled-components";
+import React, { useState } from "react";
+import { SearchBox, FormBox } from "../styles/GlobalStyle";
 
 interface propsType {
     id : string
 }
+
 export function Search({id} : propsType){
     const [srchWord, setSrchWord] = useState(""); 
 
-    const SearchBox = styled.div`
-        height:0;
-        padding:20px 0;
-        opacity:0;
-        overflow:hidden;
-        transition:all 0.3s ease;
-
-        &.on{
-            height:auto;
-            opacity:1;
-            overflow:visible;
-        }
-    `;
-
-    const FormBox = styled.form`
-        display:flex;
-        margin:15px 0;
-
-        input{
-            flex:1;
-            display:block;
-            width:100%;
-            height:48px;
-            padding:5px 10px;
-            margin-right:10px;
-            font-size:16px;
-            border:1px solid #e5e5e5;
-            border-radius:5px;
-        }
-
-        button{
-            display:block;
-            width:100px;
-            height:48px;
-            font-size:18px;
-            font-weight:bold;
-            color:#fff;
-            background-color:#7ec9d5;
-            border-radius:5px;
-            border:none;
-        }
-    `;
-
     const submitForm =(event:React.FormEvent<HTMLFormElement>) =>{
         event.preventDefault();
-        console.log(event.currentTarget.value)
+        console.log(srchWord)
     }
 
     const onChangeEvt = (event:React.FormEvent<HTMLInputElement>)=>{

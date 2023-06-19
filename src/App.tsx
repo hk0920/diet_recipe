@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import { Header } from './components/Header';
 import { Detail } from './pages/Detail';
+import { DetailUpgrade } from './pages/DetailUpgrade';
 import { Home } from './pages/Home';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>}></Route>
             <Route path="/detail/:idx" element={<Detail/>}></Route>
+            <Route path="/detail-upgrade/:idx" element={<DetailUpgrade/>}></Route>
           </Routes>
         </div>
       </div>

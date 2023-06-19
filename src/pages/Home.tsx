@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { List } from "../components/List";
 import { Loading } from "../components/Loading";
+import { BoxButtons } from "../styles/GlobalStyle";
+import { Api } from "../assets/Api";
 
 interface dataType {
     name : string,
@@ -19,18 +21,31 @@ export function Home(){
     let [data, setData] = useState([]);
     let [total, setTotal] = useState(0);
     let [cnt, setCnt] = useState(1);
+    const key = process.env.REACT_APP_API_KEY;
+    
 
     useEffect(()=>{
-        var key = "eee79f6774ce45108ed4";
-        axios.get("http://openapi.foodsafetykorea.go.kr/api/"+ key +"/COOKRCP01/json/1/10").then((res)=>{
-            setTotal(res.data.COOKRCP01.total_count);
-            setData(res.data.COOKRCP01.row);
-            if(!load){
-                setLoad(true);
-            }
-        }).catch((error)=>{
-            console.log(error)
-        });
+        const ApiProps = {
+            method: "get",
+            url: process.env.REACT_APP_BACK_API,
+            params: {
+                startIdx: 1,
+                endIdx : 10
+            },
+            contentType: null
+        }
+
+        console.log(Api(ApiProps))
+
+        // axios.get("http://openapi.foodsafetykorea.go.kr/api/"+ process.env.REACT_APP_API_KEY +"/COOKRCP01/json/1/10").then((res)=>{
+        //     setTotal(res.data.COOKRCP01.total_count);
+        //     setData(res.data.COOKRCP01.row);
+        //     if(!load){
+        //         setLoad(true);
+        //     }
+        // }).catch((error)=>{
+        //     console.log(error)
+        // });
     }, [load]);
 
     const moreEvt = (event:React.FormEvent<HTMLButtonElement>) => {
@@ -49,30 +64,9 @@ export function Home(){
         });
     }
 
-    const BoxButtons = styled.div`
-        margin-top:30px;
-        text-align:center;
-
-        .button__more{
-            display:inline-block;
-            width:240px;
-            height:50px;
-            font-size:16px;
-            border:1px solid #e5e5e5;
-            background:#fff;
-            border-radius:6px;
-            
-            &:hover{
-                font-weight:bold;
-                color:#7ec9d5;
-                border-color:#7ec9d5;
-            }
-        }
-    `;
-
     return(
         <div className="inner">
-            {load == false?
+            {load === false?
                 <Loading />
             :
                 <>

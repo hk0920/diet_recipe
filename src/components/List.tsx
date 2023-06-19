@@ -1,8 +1,6 @@
-import axios from "axios";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components"
-import { Extension } from "typescript";
+import { BoxList, TextTotal } from "../styles/GlobalStyle";
 
 export interface listDataType { 
     RCP_PARTS_DTLS : string,
@@ -67,84 +65,6 @@ export interface arrDataProps {
 }
 
 export function List(props:arrDataProps){
-    const TextTotal = styled.p`
-        margin-bottom:20px;
-        font-size:16px;
-        color:#666;
-
-        .text__number{
-            color:#000;
-        }
-    `;
-
-    const BoxList = styled.ul`
-        border-top:2px solid #000;    
-        
-        .list-item {
-            a{
-                display:flex;
-                padding:20px 0;
-                border-bottom:1px solid #e5e5e5;
-                flex-wrap:wrap;
-                align-items:center;
-            }
-
-            .box__image{
-                width:150px;
-                height:150px;
-
-                img{
-                   width:100%;
-                   height:100%;
-                   object-fit:cover; 
-                }
-            }
-            .box__text{
-                width:calc(100% - 150px);
-                padding-left:20px;
-
-                .text__category{
-                    margin-bottom:10px;
-
-                    span{
-                        display:inline-block;
-                        padding:5px 10px;
-                        margin-right:5px;
-                        font-size:14px;
-                        border:1px solid #e5e5e5;
-                        border-radius:15px;
-                    }
-                }
-
-                .text__name{
-                    font-size:20px;
-                    font-weight:bold;
-
-                    .text__kal{
-                        font-size:14px;
-                        color:#666;
-                    }
-                }
-            }
-
-            .list__food-detail{
-                margin-top:20px;
-
-                li{
-                    display:inline-block;
-                    margin-right:15px;
-                    font-size:14px;
-                    color:#666;
-                    line-height:1.5;
-
-                    &:last-child{
-                        margin-right:0;
-                    }
-                }
-            }
-        }
-    `;
-
     return(
         <>
             <TextTotal>총 <span className="text__number">{props.total}</span>개</TextTotal>

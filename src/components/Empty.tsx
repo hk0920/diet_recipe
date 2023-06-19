@@ -1,23 +1,10 @@
-import styled from "styled-components";
 import emptyIcon from "../assets/image__empty.png";
+import { BoxEmpty } from "../styles/GlobalStyle";
 
 interface PropsType {
     text : string
 }
 export function Empty(props:PropsType){
-    const BoxEmpty = styled.div`
-        padding:80px 0;
-        background:#f5f5f5;
-        border-radius:20px;
-        text-align:center;
-
-        .text{
-            margin-top:20px;
-            font-weight:bold;
-            font-size:20px;
-            color:#666;
-        }
-    `;
     return(
         <BoxEmpty>
             <div className="box__icon">

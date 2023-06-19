@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import styled from "styled-components";
 import { Empty } from "../components/Empty";
 import { Loading } from "../components/Loading";
 import { BoxDetail, BoxSection, ListCalory } from "../styles/GlobalStyle";
@@ -63,7 +62,7 @@ export interface dataType {
 	MANUAL14 : string,
 }
 
-export function Detail(){
+export function DetailUpgrade(){
 	const {idx} = useParams();
 	let [load, setLoad] = useState(false);
 	let [data, setData] = useState<dataType>();
@@ -73,27 +72,14 @@ export function Detail(){
 	useEffect(()=>{
 		var key = "eee79f6774ce45108ed4";
 		axios.get("http://openapi.foodsafetykorea.go.kr/api/"+ key +"/COOKRCP01/json/"+idx+"/"+ idx).then((res)=>{
-			setData(res.data.COOKRCP01.row[0]);
+			// setData(res.data.COOKRCP01.row[0]);
 			setLoad(true);
 			
-			// let dataKey = Object.keys(res.data.COOKRCP01.row[0]);
-			// let dataObj = {
-			// 	text: "",
-			// 	img : ""
-			// }
-			// console.log(dataKey)
-			// for(let item in dataKey){
-			// 	const recipeTarget = dataKey[item].match("MANUAL");
-			// 	const recipeStr = recipeTarget?.input?.toString();
-			// 	const recipeKey = recipeStr?.substring(0, recipeStr.length-2);
-			// 	const idx = recipeStr?.substring(recipeStr.length-2, recipeStr.length);
-
-			// 	if(recipeKey === "MANUAL"){
-			// 		// dataObj.text = Object.values(recipeKey);
-			// 	}
-			// 	console.log(recipeKey , idx)
-			// 	// console.log(recipeStr?.substring(recipeStr.length-2, recipeStr.length))
-			// }
+			const dataObj = res.data.COOKRCP01.row[0];
+			Object.entries(dataObj).map((item, idx) => {
+				const objItem = item;
+				console.log(objItem.filter(objItem=>item[0].match("MANUAL")));
+			})
 		}).catch((error)=>{
 			console.log(error)
 		})
