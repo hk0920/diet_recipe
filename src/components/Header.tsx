@@ -2,7 +2,10 @@ import {Link} from "react-router-dom";
 import { Search } from "./Search";
 import { HeaderBox, Logo } from "../styles/GlobalStyle";
 
-export function Header(){
+interface headerProps {
+    searchEvt: Function
+}
+export function Header(props:headerProps){
     const activeSearch = (event: React.FormEvent<HTMLButtonElement>)=>{
         event.preventDefault();
         const $target = event.currentTarget;
@@ -29,7 +32,7 @@ export function Header(){
                     <span className="for-a11y">검색창 열기</span>
                 </button>
             </div>
-            <Search id="headerSrch"/>
+            <Search id="headerSrch" searchEvt={props.searchEvt}/>
         </HeaderBox>
     )
 }
