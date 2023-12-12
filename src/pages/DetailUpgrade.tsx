@@ -76,10 +76,10 @@ export function DetailUpgrade(){
 			setLoad(true);
 			
 			const dataObj = res.data.COOKRCP01.row[0];
-			Object.entries(dataObj).map((item, idx) => {
-				const objItem = item;
-				console.log(objItem.filter(objItem=>item[0].match("MANUAL")));
-			})
+			// Object.entries(dataObj).map((item, idx) => {
+			// 	const objItem = item;
+			// 	console.log(objItem.filter(objItem=>item[0].match("MANUAL")));
+			// })
 		}).catch((error)=>{
 			console.log(error)
 		})
