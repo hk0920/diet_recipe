@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import styled from "styled-components";
 import { Empty } from "../components/Empty";
 import { Loading } from "../components/Loading";
 import { BoxDetail, BoxSection, ListCalory } from "../styles/GlobalStyle";
@@ -64,15 +63,14 @@ export interface dataType {
 }
 
 export function Detail(){
-	const {idx} = useParams();
+	const {name} = useParams();
 	let [load, setLoad] = useState(false);
 	let [data, setData] = useState<dataType>();
 	let [manual, setManual] = useState([]);	
-	
+  const apiUrl = `${process.env.REACT_APP_BACK_API}${process.env.REACT_APP_API_KEY}/${process.env.REACT_APP_BACK_SERVICE}`;
 
 	useEffect(()=>{
-		var key = "eee79f6774ce45108ed4";
-		axios.get("http://openapi.foodsafetykorea.go.kr/api/"+ key +"/COOKRCP01/json/"+idx+"/"+ idx).then((res)=>{
+		axios.get(apiUrl+"/json/1/2/"+"/RCP_NM="+name).then((res)=>{
 			setData(res.data.COOKRCP01.row[0]);
 			setLoad(true);
 			
@@ -127,12 +125,9 @@ export function Detail(){
 						<h3 className="text__h3">재료</h3>
 						<ul className="list__food">
 							{data?.RCP_PARTS_DTLS.split("\n")[1].split(",").map((item, idx)=>{
+								const itemFood = item !== ""? <li key={idx}>{item.trim()}</li> : null;
 								return(
-									<>
-										{item !== ""?
-											<li key={idx}>{item.trim()}</li>
-										:""}
-									</>
+									itemFood
 								)
 							})}
 						</ul>

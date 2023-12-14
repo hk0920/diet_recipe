@@ -29,7 +29,6 @@ export const GlobalStyle = createGlobalStyle`
     }
     a {
         text-decoration:none;
-        
     }
     .for-a11y{
         font-size:0;
@@ -186,6 +185,33 @@ export const FormBox = styled.form`
 export const BoxButtons = styled.div`
     margin-top:30px;
     text-align:center;
+    .button__prev,
+    .button__next{
+        display:inline-block;
+        padding:10px 20px;
+        margin:0 10px;
+        font-size:16px;
+        border:1px solid #e5e5e5;
+        background:#fff;
+        border-radius:6px;
+        &:hover{
+            font-weight:bold;
+            color:${theme.colors.pointColor};
+            border-color:${theme.colors.pointColor};
+        }
+    }
+    .button__page{
+        display:inline-block;
+        padding:10px;
+        font-size:14px;
+        border:none;
+        background:none;
+        &--active,
+        &:hover{
+            font-weight:bold;
+            color:${theme.colors.pointColor};
+        }
+    }
     .button__more{
         display:inline-block;
         width:240px;

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components"
 import { BoxList, TextTotal } from "../styles/GlobalStyle";
 
 export interface listDataType { 
@@ -72,7 +71,7 @@ export function List(props:arrDataProps){
                 {props.data.map((item, idx)=>{
                     return(
                         <li className="list-item" key={idx}>
-                            <Link to={`detail/${idx+1}`}>
+                            <Link to={`detail/${item.RCP_NM}`} id={item.RCP_NM}>
                                 <div className="box__image">
                                     <img src={item.ATT_FILE_NO_MK} alt="" />
                                 </div>

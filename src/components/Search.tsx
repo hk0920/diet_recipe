@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import { SearchBox, FormBox } from "../styles/GlobalStyle";
+import { useNavigate } from "react-router-dom";
 
 interface propsType {
     id : string,
-    searchEvt: Function
+    searchEvt: Function,
+    activeSearch: Function
 }
 
 export function Search(props : propsType){
     const [srchWord, setSrchWord] = useState(""); 
+    const navigation = useNavigate();
 
     const submitForm =(event:React.FormEvent<HTMLFormElement>) =>{
         event.preventDefault();
-        console.log(srchWord)
         props.searchEvt(srchWord);
+        props.activeSearch();
+        navigation("/");
+        console.log(srchWord)
     }
 
     const onChangeEvt = (event:React.FormEvent<HTMLInputElement>)=>{

@@ -1,24 +1,26 @@
 import {Link} from "react-router-dom";
 import { Search } from "./Search";
 import { HeaderBox, Logo } from "../styles/GlobalStyle";
+import { useState } from "react";
 
 interface headerProps {
     searchEvt: Function
 }
 export function Header(props:headerProps){
-    const activeSearch = (event: React.FormEvent<HTMLButtonElement>)=>{
-        event.preventDefault();
-        const $target = event.currentTarget;
-        const $searchTarget = document.getElementById("headerSrch");
+    const [isShowSearch, setIsShowSearch] = useState(false);
 
-        if(!$target.classList.contains("on")){
-            $target.classList.add("on");
+    const activeSearch = ()=>{
+        const $searchTarget = document.getElementById("headerSrch") as HTMLDivElement;
+        const $target = document.querySelector("#header .button__search") as HTMLButtonElement;
+
+        if(!isShowSearch){
             $searchTarget?.classList.add("on");
             $target.children[0].innerHTML = "검색창 닫기";
+            setIsShowSearch(true);
         }else{
-            $target.classList.remove("on");
             $searchTarget?.classList.remove("on");
             $target.children[0].innerHTML = "검색창 열기";
+            setIsShowSearch(false);
         }
     }
 
@@ -32,7 +34,7 @@ export function Header(props:headerProps){
                     <span className="for-a11y">검색창 열기</span>
                 </button>
             </div>
-            <Search id="headerSrch" searchEvt={props.searchEvt}/>
+            <Search id="headerSrch" searchEvt={props.searchEvt} activeSearch={activeSearch}/>
         </HeaderBox>
     )
 }
